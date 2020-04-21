@@ -1,0 +1,37 @@
+
+
+server:
+  port: 9940
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true  # 自动按照serviceId 进行路由   url中需要包含serviceID
+          lower-case-service-id: true # 默认的ServiceID是大写，开启后可自动转小写
+      default-filters:
+        - RequestUseTime=true
+        - Elapsed=true
+      routes:
+#        - id: hangzhou
+#          uri: lb://hellohangzhoudemo
+#          order: 0
+#          predicates:
+#            - Path=/hangzhou/**
+        - id: world
+          uri: lb://helloworlddemo
+          order: 0
+          predicates:
+            - Path=/world/**
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    org.springframework.cloud.gateway: info

@@ -1,0 +1,13 @@
+
+spring:
+  application:
+    name: helloworlddemo
+server:
+  port: 9930
+  servlet:
+    context-path: /world
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
